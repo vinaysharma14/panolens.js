@@ -1995,8 +1995,11 @@ function Infospot ( scale = 300, imageSrc, animated ) {
     this.addEventListener( 'dismiss', this.onDismiss );
     this.addEventListener( 'panolens-infospot-focus', this.setFocusMethod );
 
-    TextureLoader.load( imageSrc, postLoad );	
+    TextureLoader.load( imageSrc, postLoad ); 
 
+    this.replaceIcon = function (imgSrc) {
+        TextureLoader.load(imgSrc, postLoad);
+    }.bind(this);
 }
 Infospot.prototype = Object.assign( Object.create( Sprite.prototype ), {
 
@@ -2043,6 +2046,10 @@ Infospot.prototype = Object.assign( Object.create( Sprite.prototype ), {
 
         return this.container;
 
+    },
+
+    replaceHelper: function (imgSrc) {
+        this.replaceIcon(imgSrc);
     },
 
     /**
